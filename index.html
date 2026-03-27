@@ -151,3 +151,29 @@
     <!-- End of bodyEnd -->
 <script>fetch("https://tostatic.app/fns/pixel/1597fbfd9348b9442eb42977b8b2c49db2e25236?origin="+encodeURIComponent(window.location.href), {headers: {'X-Site-Origin': window.location.href}});</script></body>
 </html>
+<style>
+#__framer-badge-container {
+    pointer-events: auto;
+    display: none;
+}
+#__framer-editorbar-container, #__framer-editorbar-container * {
+    display: none !important;
+}
+</style>
+import type { ComponentType } from "react"
+
+export function withoutFramerBadge(Component): ComponentType {
+    return (props) => {
+        return (
+            <>
+                <style>
+                    {`
+                        #__framer-badge-container { display: none !important; }
+                    `}
+                </style>
+
+                <Component {...props} />
+            </>
+        )
+    }
+}
